@@ -18,10 +18,11 @@ def start():
 def predict_priority():
     if request.args:
         args = request.args.to_dict()
+        print(args)
         parameters = ['age', 'income', 'disabled', 'pregnant', 'bmi', 'doctor_severity_score', 'disease_index', 'deadline', 'claiming_amount', 'sex', 'successful_previous_claims']
         input = np.array([float(args[parameter]) for parameter in parameters])
         output = {model:label_encoder.inverse_transform(models[model].predict(input.reshape(1, -1))).flat[0] for model in models}
-        return jsonify(output)
+        return jsonify(output), 200
     else:
         return 'Args is empty', 200
 

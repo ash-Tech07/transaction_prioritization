@@ -12,10 +12,12 @@ def loadModels():
 
 @app.route('/', methods=['GET'])
 def start():
+    loadModels()
     return 'The service is up and running', 200
 
 @app.route('/api', methods=['GET'])
 def predict_priority():
+    loadModels()
     if request.args:
         args = request.args.to_dict()
         print(args)
@@ -27,5 +29,4 @@ def predict_priority():
         return 'Args is empty', 200
 
 if __name__ == '__main__': 
-    loadModels()  
     app.run(debug=True)

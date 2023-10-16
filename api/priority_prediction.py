@@ -3,12 +3,12 @@ import numpy as np
 import pickle
 
 app = Flask(__name__, static_url_path='', static_folder='./static')
-label_encoder = pickle.load(open('../static/models/label_encoder.pkl', 'rb'))
+label_encoder = pickle.load(open('static/models/label_encoder.pkl', 'rb'))
 models = {'svm_poly': None, 'svm_rbf': None, 'dt': None, 'knn': None, 'gnb': None, 'rf': None}
 
 def loadModels():
     for model in models:
-        models[model] = pickle.load(open('../static/models/'+model+'.pkl', 'rb'))
+        models[model] = pickle.load(open('static/models/'+model+'.pkl', 'rb'))
 
 @app.route('/', methods=['GET'])
 def start():

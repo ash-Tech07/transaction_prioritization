@@ -10,9 +10,11 @@ def loadModels():
     for model in models:
         models[model] = pickle.load(open('api/models/'+model+'.pkl', 'rb'))
 
-
-
 @app.route('/', methods=['GET'])
+def start():
+    return 'The service is up and running', 200
+
+@app.route('/api', methods=['GET'])
 def predict_priority():
     if request.args:
         args = request.args.to_dict()
@@ -21,7 +23,7 @@ def predict_priority():
         output = {model:label_encoder.inverse_transform(models[model].predict(input.reshape(1, -1))).flat[0] for model in models}
         return jsonify(output)
     else:
-        return 'The service is up and running', 200
+        return 'Args is empty', 200
 
 if __name__ == '__main__': 
     loadModels()  

@@ -2,10 +2,7 @@
     "builds": [
         {
             "src":"api/priority_prediction.py",
-            "use":"@vercel/python",
-            "config": {
-                "includeFiles": ["models/dt.pkl", "models/gnb.pkl", "models/knn.pkl", "models/label_encoder.pkl", "models/rf.pkl", "models/svm_poly.pkl", "models/svm_rbf.pkl"]
-              }
+            "use":"@vercel/python"
         }
     ],
     "routes":[
